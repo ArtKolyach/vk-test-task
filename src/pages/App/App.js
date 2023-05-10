@@ -5,10 +5,11 @@ import { FormDatePicker} from "../../components/FormDatePicker/FormDatePicker";
 import {FormTimeRangePicker} from "../../components/FormTimeRangePicker/FormTimeRangePicker";
 import {FormTextArea} from "../../components/FormTextArea/FormTextArea";
 import {useForm} from "react-hook-form";
+import format from 'date-fns/format'
 
 function App() {
 
-    const {control, handleSubmit, reset} = useForm({
+    const {control, handleSubmit, reset, setError, formState: {errors: formErrors}} = useForm({
         defaultValues: {
             tower: "",
             floor: "",
@@ -22,7 +23,13 @@ function App() {
     })
 
     const onSubmit = (data) => {
-        console.log(JSON.stringify(data))
+        const result = {
+            ...data,
+            date: format(new Date(data.date), "dd.MM.yyyy"),
+            timeFrom: format(new Date(data.timeFrom), "HH:mm"),
+            timeTo: format(new Date(data.timeTo), "HH:mm"),
+        }
+        console.log(JSON.stringify(result))
     }
 
   return (
@@ -58,16 +65,26 @@ function App() {
                 control={control}
                 label="Дата"
             />
-            <FormTimeRangePicker control={control}/>
+            <FormTimeRangePicker
+                control={control}
+                setError={setError}
+            />
             <FormTextArea
                 name="comment"
                 label="Комментарий"
                 control={control}
             />
-            <div>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                }}
+            >
                 <Button
                     variant="contained"
                     type="submit"
+                    sx={{marginRight: "10px"}}
                 >
                     Забронировать
                 </Button>

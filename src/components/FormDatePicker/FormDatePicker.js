@@ -10,14 +10,25 @@ export const FormDatePicker = ({name, control, label}) => {
             <Controller
                 name={name}
                 control={control}
+                rules={{ required: true }}
                 render={({ field }) => (
-                    <LocalizationProvider
-                        dateAdapter={AdapterDayjs}
-                        adapterLocale="ru"
-                    >
-                        <InputLabel>{label}</InputLabel>
-                        <DatePicker {...field}/>
-                    </LocalizationProvider>
+                    <div>
+                        <LocalizationProvider
+                            dateAdapter={AdapterDayjs}
+                            adapterLocale="ru"
+                        >
+                            <InputLabel
+                                style={{marginTop: "10px"}}
+                            >
+                                {label}
+                            </InputLabel>
+                            <DatePicker
+                                {...field}
+                                disablePast
+                                sx={{width: "100%"}}
+                            />
+                        </LocalizationProvider>
+                    </div>
                 )}
             />
     );

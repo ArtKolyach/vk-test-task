@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 
 export const AppContainer = styled.div(
     {
-            backgroundColor: '#EDEEF0',
-            display: 'flex',
-            flexDirection: 'column',
+        backgroundColor: '#EDEEF0',
+        display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'start',
         alignItems: 'center',
         minHeight: '100vh',
@@ -26,6 +26,6 @@ export const StyledForm = styled.form(
         justifyContent: "center",
         alignContent: "center",
         boxSizing: "border-box",
-            marginTop: "3vh",
+        marginTop: "3vh",
     }
 )
