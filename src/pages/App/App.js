@@ -1,6 +1,9 @@
 import { AppContainer, StyledForm } from "./App.styles";
-import {Button, Typography} from "@mui/material";
+import {Button, Typography, TextareaAutosize} from "@mui/material";
 import {FormSelect} from "../../components/FormSelect/FormSelect";
+import { FormDatePicker} from "../../components/FormDatePicker/FormDatePicker";
+import {FormTimeRangePicker} from "../../components/FormTimeRangePicker/FormTimeRangePicker";
+import {FormTextArea} from "../../components/FormTextArea/FormTextArea";
 import {useForm} from "react-hook-form";
 
 function App() {
@@ -8,8 +11,12 @@ function App() {
     const {control, handleSubmit, reset} = useForm({
         defaultValues: {
             tower: "",
-            floor:"",
-            room:'',
+            floor: "",
+            room: "",
+            date: "",
+            timeFrom: "",
+            timeTo: "",
+            comment: "",
         }
 
     })
@@ -44,6 +51,17 @@ function App() {
                 name="room"
                 label="Переговорка"
                 values={Array(10).fill().map((e, i) => i + 1)}
+                control={control}
+            />
+            <FormDatePicker
+                name="date"
+                control={control}
+                label="Дата"
+            />
+            <FormTimeRangePicker control={control}/>
+            <FormTextArea
+                name="comment"
+                label="Комментарий"
                 control={control}
             />
             <div>

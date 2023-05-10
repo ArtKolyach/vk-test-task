@@ -14,8 +14,13 @@ export const FormSelect = ({ name, values, label, control }) => {
                         labelId={name}
                         {...field}
                     >
-                        {values.map((value) => (
-                            <MenuItem value={value}>{value}</MenuItem>
+                        {values.map((value, index) => (
+                            <MenuItem
+                                value={value}
+                                key={index}
+                            >
+                                {value}
+                            </MenuItem>
                         ))}
                     </Select>
                 )}
